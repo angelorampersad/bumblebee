@@ -1,7 +1,6 @@
 import { promises as fs } from "fs"
 import path from "path"
 import { Metadata } from "next"
-import Image from "next/image"
 import { z } from "zod"
 import prisma from '@/lib/db'
 
@@ -25,6 +24,7 @@ async function getTasks() {
   )
 
   const tasks = JSON.parse(data.toString())
+  console.log(z.array(taskSchema).parse(tasks))
 
   return z.array(taskSchema).parse(tasks)
 }
@@ -43,7 +43,7 @@ async function getDogs() {
 export default async function TaskPage() {
   const tasks = await getTasks();
   const dogs = await getDogs();
-  console.log(dogs);
+  // console.log(dogs);
 
   return (
     <>

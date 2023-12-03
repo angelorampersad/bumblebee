@@ -15,8 +15,9 @@ async function main() {
     const task: Task = {
       id: faker.string.uuid(),
       title: faker.lorem.words({ min: 3, max: 5 }),
-      status: faker.lorem.words(1),
-      label: faker.lorem.words(1),
+      status: faker.helpers.arrayElement(['in progress', 'backlog', 'todo', 'canceled', 'done']),
+      label: faker.helpers.arrayElement(['documentation', 'bug', 'feature']),
+      priority: faker.helpers.arrayElement(['low', 'medium', 'high']),
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
     };

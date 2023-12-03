@@ -15,6 +15,7 @@ model Task {
   title     String
   status    String
   label     String
+  priority  String?  @default("low")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
