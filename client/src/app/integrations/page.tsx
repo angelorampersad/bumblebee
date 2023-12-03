@@ -14,14 +14,14 @@ export const metadata: Metadata = {
 }
 
 // Simulate a database read for tasks.
-async function getTasks() {
+async function getPlans() {
 
-  const tasks = await prisma.task.findMany();
-  return tasks;
+  const plans = await prisma.plan.findMany();
+  return plans;
 }
 
 export default async function TaskPage() {
-  const tasks = await getTasks();
+  const plans = await getPlans();
 
   return (
     <>
@@ -44,7 +44,7 @@ export default async function TaskPage() {
             </p>
           </div>
         </div>
-        <DataTable data={tasks} columns={columns} />
+        <DataTable data={plans} columns={columns} />
       </div>
     </>
   )
