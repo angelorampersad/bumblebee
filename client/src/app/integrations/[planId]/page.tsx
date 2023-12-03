@@ -13,15 +13,17 @@ export const metadata: Metadata = {
   description: "A plan and issue tracker build using Tanstack Table.",
 }
 
-// Simulate a database read for tasks.
-async function getPlans() {
-
-  const plans = await prisma.plan.findMany();
+async function getPlan(id: string) {
+  const plans = await prisma.plan.findUnique({
+    where: {
+      id: id,
+    },
+  })
   return plans;
 }
 
-export default async function TaskPage() {
-  const plans = await getPlans();
+export default async function TaskPage({ params }: { params: { planId: string } }) {
+  const plans = await getPlan(params.planId);
 
   return (
     <>
@@ -44,7 +46,7 @@ export default async function TaskPage() {
             </p>
           </div>
         </div>
-        <DataTable data={plans} columns={columns} />
+        <text>{JSON.stringify(plans)}</text>
       </div>
     </>
   )
