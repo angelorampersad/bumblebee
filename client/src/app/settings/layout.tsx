@@ -3,6 +3,10 @@ import Image from "next/image"
 
 import { Separator } from "@/components/ui/separator"
 import { SidebarNav } from "@/components/sidebar-nav"
+import TeamSwitcher from "@/components/team-switcher"
+import { MainNav } from "@/components/main-nav"
+import { Search } from "@/components/search"
+import { UserNav } from "@/components/user-nav"
 
 export const metadata: Metadata = {
   title: "Forms",
@@ -39,6 +43,16 @@ interface SettingsLayoutProps {
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <>
+    <div className="border-b">
+          <div className="flex h-16 items-center px-4">
+            <TeamSwitcher />
+            <MainNav className="mx-6" />
+            <div className="ml-auto flex items-center space-x-4">
+              <Search />
+              <UserNav />
+            </div>
+          </div>
+        </div>
       <div className="md:hidden">
         <Image
           src="/examples/forms-light.png"
