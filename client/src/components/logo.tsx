@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
+import Image from "next/image";
+import bumblebeeIcon from '../../public/bumblebee.svg'
 
 import { cn } from "@/lib/utils"
 
@@ -19,7 +21,13 @@ export function Logo({
       {...props}
     >
      <Link href="/" className="mr-6 flex items-center space-x-2">
-        {/* <Icons.logo className="h-6 w-6" /> */}
+        <Image
+          priority
+          src={bumblebeeIcon}
+          alt="Follow us on Twitter"
+          height={64}
+          width={64}
+        />
         <span className="hidden font-bold sm:inline-block">
           Bumblebee
         </span>
