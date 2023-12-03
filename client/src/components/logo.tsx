@@ -1,0 +1,29 @@
+"use client";
+
+import Link from "next/link"
+import { usePathname } from 'next/navigation'
+
+import { cn } from "@/lib/utils"
+
+export function Logo({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
+  const pathname = usePathname();
+  const activeLink = "text-sm font-medium transition-colors hover:text-primary";
+  const unactiveLink = "text-sm font-medium text-muted-foreground transition-colors hover:text-primary";
+
+  return (
+    <nav
+      className={cn("flex items-center space-x-4 lg:space-x-6", className)}
+      {...props}
+    >
+     <Link href="/" className="mr-6 flex items-center space-x-2">
+        {/* <Icons.logo className="h-6 w-6" /> */}
+        <span className="hidden font-bold sm:inline-block">
+          Bumblebee
+        </span>
+      </Link>
+    </nav>
+  )
+}

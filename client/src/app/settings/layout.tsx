@@ -5,8 +5,8 @@ import { Separator } from "@/components/ui/separator"
 import { SidebarNav } from "@/components/sidebar-nav"
 import TeamSwitcher from "@/components/team-switcher"
 import { MainNav } from "@/components/main-nav"
+import { Logo } from "@/components/logo"
 import { Search } from "@/components/search"
-import { UserNav } from "@/components/user-nav"
 
 export const metadata: Metadata = {
   title: "Forms",
@@ -43,13 +43,13 @@ interface SettingsLayoutProps {
 export default function SettingsLayout({ children }: SettingsLayoutProps) {
   return (
     <>
-    <div className="border-b">
+      <div className="border-b">
           <div className="flex h-16 items-center px-4">
-            <TeamSwitcher />
+            <Logo />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
-              <UserNav />
+              <TeamSwitcher />
             </div>
           </div>
         </div>
