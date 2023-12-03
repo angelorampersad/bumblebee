@@ -1,5 +1,6 @@
 import { PrismaClient, Task } from "@prisma/client";
 import { faker } from "@faker-js/faker";
+import { labels, priorities, statuses } from "../src/data/data"
 
 const prisma = new PrismaClient();
 
@@ -13,11 +14,11 @@ async function main() {
   for (let i = 0; i < amountOfTasks; i++) {
 
     const task: Task = {
-      id: faker.string.uuid(),
-      title: faker.lorem.words({ min: 3, max: 5 }),
-      status: faker.helpers.arrayElement(['in progress', 'backlog', 'todo', 'canceled', 'done']),
-      label: faker.helpers.arrayElement(['documentation', 'bug', 'feature']),
-      priority: faker.helpers.arrayElement(['low', 'medium', 'high']),
+      id: `TASK-${faker.number.int({ min: 1000, max: 9999 })}`,
+      title: faker.hacker.phrase().replace(/^./, (letter) => letter.toUpperCase()),
+      status: faker.helpers.arrayElement(statuses).value,
+      label: faker.helpers.arrayElement(labels).value,
+      priority: faker.helpers.arrayElement(priorities).value,
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
     };

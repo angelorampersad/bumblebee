@@ -11,11 +11,11 @@ datasource db {
 }
 
 model Task {
-  id        String   @id @default(uuid())
+  id        String   @unique
   title     String
   status    String
   label     String
-  priority  String?  @default("low")
+  priority  String   @default("low")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

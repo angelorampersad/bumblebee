@@ -19,17 +19,6 @@ export const metadata: Metadata = {
 
 // Simulate a database read for tasks.
 async function getTasks() {
-  const data = await fs.readFile(
-    path.join(process.cwd(), "src/data/tasks.json")
-  )
-
-  const tasks = JSON.parse(data.toString())
-  console.log(z.array(taskSchema).parse(tasks))
-
-  return z.array(taskSchema).parse(tasks)
-}
-
-async function getDogs() {
   // const res = await fetch('https://dog.ceo/api/breeds/list/all');
   // if (!res.ok) {
   //   throw new Error('Failed to fetch data')
@@ -42,8 +31,7 @@ async function getDogs() {
 
 export default async function TaskPage() {
   const tasks = await getTasks();
-  const dogs = await getDogs();
-  // console.log(dogs);
+  console.log(tasks);
 
   return (
     <>
