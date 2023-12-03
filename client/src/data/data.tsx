@@ -11,39 +11,30 @@ import {
   
   export const labels = [
     {
-      value: "bug",
-      label: "Bug",
+      value: "platform",
+      label: "Platform",
     },
     {
       value: "feature",
       label: "Feature",
-    },
-    {
-      value: "documentation",
-      label: "Documentation",
-    },
+    }
   ]
   
   export const statuses = [
     {
-      value: "backlog",
-      label: "Backlog",
-      icon: QuestionMarkCircledIcon,
-    },
-    {
-      value: "todo",
-      label: "Todo",
+      value: "pending",
+      label: "Pending",
       icon: CircleIcon,
     },
     {
-      value: "in progress",
-      label: "In Progress",
-      icon: StopwatchIcon,
+      value: "collecting",
+      label: "Collecting",
+      icon: CheckCircledIcon,
     },
     {
-      value: "done",
-      label: "Done",
-      icon: CheckCircledIcon,
+      value: "incomplete",
+      label: "Incomplete",
+      icon: QuestionMarkCircledIcon,
     },
     {
       value: "canceled",
@@ -52,20 +43,20 @@ import {
     },
   ]
   
-  export const priorities = [
+  export const tiers = [
     {
-      label: "Low",
-      value: "low",
-      icon: ArrowDownIcon,
+      label: "Tier 1",
+      value: "tier_1",
+      icon: ArrowUpIcon,
     },
     {
-      label: "Medium",
-      value: "medium",
+      label: "Tier 2",
+      value: "tier_2",
       icon: ArrowRightIcon,
     },
     {
-      label: "High",
-      value: "high",
-      icon: ArrowUpIcon,
+      label: "Tier 3",
+      value: "tier_3",
+      icon: ArrowDownIcon,
     },
   ]

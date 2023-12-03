@@ -24,12 +24,12 @@ export function MainNav({
       >
         Overview
       </Link>
-      <Link
+      {/* <Link
         href="/insights"
         className={pathname === '/insights' ? activeLink : unactiveLink}
       >
         Insights
-      </Link>
+      </Link> */}
       <Link
         href="/integrations"
         className={pathname === '/integrations' ? activeLink : unactiveLink}

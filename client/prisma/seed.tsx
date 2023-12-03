@@ -1,32 +1,31 @@
-import { PrismaClient, Task } from "@prisma/client";
+import { PrismaClient, Plan } from "@prisma/client";
 import { faker } from "@faker-js/faker";
-import { labels, priorities, statuses } from "../src/data/data"
+import { labels, tiers, statuses } from "../src/data/data"
 
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.task.deleteMany({});
+  await prisma.plan.deleteMany({});
 
-  const amountOfTasks = 65;
+  const amountOfPlans = 65;
+  const plans: Plan[] = [];
 
-  const tasks: Task[] = [];
+  for (let i = 0; i < amountOfPlans; i++) {
 
-  for (let i = 0; i < amountOfTasks; i++) {
-
-    const task: Task = {
-      id: `TASK-${faker.number.int({ min: 1000, max: 9999 })}`,
-      title: faker.hacker.phrase().replace(/^./, (letter) => letter.toUpperCase()),
+    const plan: Plan = {
+      id: `PLAN-${faker.number.int({ min: 1000, max: 9999 })}`,
+      name: faker.hacker.phrase().replace(/^./, (letter) => letter.toUpperCase()),
       status: faker.helpers.arrayElement(statuses).value,
       label: faker.helpers.arrayElement(labels).value,
-      priority: faker.helpers.arrayElement(priorities).value,
+      tier: faker.helpers.arrayElement(tiers).value,
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
     };
 
-    tasks.push(task);
+    plans.push(plan);
   }
 
-  const addUsers = async () => await prisma.task.createMany({ data: tasks });
+  const addUsers = async () => await prisma.plan.createMany({ data: plans });
 
   addUsers();
 }
