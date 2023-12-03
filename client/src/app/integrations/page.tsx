@@ -29,8 +29,21 @@ async function getTasks() {
   return z.array(taskSchema).parse(tasks)
 }
 
+async function getDogs() {
+  // const res = await fetch('https://dog.ceo/api/breeds/list/all');
+  // if (!res.ok) {
+  //   throw new Error('Failed to fetch data')
+  // }
+  // return res.json()
+
+  const tasks = await prisma.task.findMany();
+  return tasks;
+}
+
 export default async function TaskPage() {
-  const tasks = await getTasks()
+  const tasks = await getTasks();
+  const dogs = await getDogs();
+  console.log(dogs);
 
   return (
     <>
