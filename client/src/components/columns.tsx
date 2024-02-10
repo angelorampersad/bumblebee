@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { ColumnDef } from "@tanstack/react-table"
+import { ColumnDef } from "@tanstack/react-table";
 
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 
-import { labels, tiers, statuses } from "@/data/data"
-import { Task } from "@/data/schema"
-import { DataTableColumnHeader } from "@/components/data-table-column-header"
-import { DataTableRowActions } from "@/components/data-table-row-actions"
+import { labels, tiers, statuses } from "@/data/data";
+import { Task } from "@/data/schema";
+import { DataTableColumnHeader } from "@/components/data-table-column-header";
+import { DataTableRowActions } from "@/components/data-table-row-actions";
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -50,7 +50,7 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Name" />
     ),
     cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label)
+      const label = labels.find((label) => label.value === row.original.label);
 
       return (
         <div className="flex space-x-2">
@@ -59,21 +59,21 @@ export const columns: ColumnDef<Task>[] = [
             {row.getValue("name")}
           </span>
         </div>
-      )
+      );
     },
   },
   {
-    accessorKey: "status",
+    accessorKey: "published",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
     cell: ({ row }) => {
       const status = statuses.find(
-        (status) => status.value === row.getValue("status")
-      )
+        (status) => status.value === row.getValue("published")
+      );
 
       if (!status) {
-        return null
+        return null;
       }
 
       return (
@@ -83,10 +83,10 @@ export const columns: ColumnDef<Task>[] = [
           )}
           <span>{status.label}</span>
         </div>
-      )
+      );
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      return value.includes(row.getValue(id));
     },
   },
   {
@@ -95,12 +95,10 @@ export const columns: ColumnDef<Task>[] = [
       <DataTableColumnHeader column={column} title="Tier" />
     ),
     cell: ({ row }) => {
-      const tier = tiers.find(
-        (tier) => tier.value === row.getValue("tier")
-      )
+      const tier = tiers.find((tier) => tier.value === row.getValue("tier"));
 
       if (!tier) {
-        return null
+        return null;
       }
 
       return (
@@ -110,14 +108,14 @@ export const columns: ColumnDef<Task>[] = [
           )}
           <span>{tier.label}</span>
         </div>
-      )
+      );
     },
     filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id))
+      return value.includes(row.getValue(id));
     },
   },
   {
     id: "actions",
     cell: ({ row }) => <DataTableRowActions row={row} />,
   },
-]
+];

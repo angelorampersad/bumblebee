@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useRouter } from 'next/navigation'
-import { DotsHorizontalIcon } from "@radix-ui/react-icons"
-import { Row } from "@tanstack/react-table"
+import { useRouter, useParams } from "next/navigation";
+import { DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { Row } from "@tanstack/react-table";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,20 +17,21 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
-import { labels } from "../data/data"
-import { taskSchema } from "../data/schema"
+import { labels } from "../data/data";
+import { taskSchema } from "../data/schema";
 
 interface DataTableRowActionsProps<TData> {
-  row: Row<TData>
+  row: Row<TData>;
 }
 
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const plan = taskSchema.parse(row.original)
-  const router = useRouter()
+  const plan = taskSchema.parse(row.original);
+  const router = useRouter();
+  const params = useParams<{ productId: string }>()
 
   return (
     <DropdownMenu>
@@ -44,7 +45,11 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={() => router.push(`/integrations/${plan.id}`)}>Edit</DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => router.push(`/products/${params.productId}/integrations/${plan.id}`)}
+        >
+          Edit
+        </DropdownMenuItem>
         <DropdownMenuItem>Make a copy</DropdownMenuItem>
         <DropdownMenuItem>Favorite</DropdownMenuItem>
         <DropdownMenuSeparator />
@@ -67,5 +72,5 @@ export function DataTableRowActions<TData>({
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  )
+  );
 }

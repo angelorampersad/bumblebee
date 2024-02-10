@@ -1,0 +1,4 @@
+site_name: "analyticsplatformhub docs"
+
+plugins:
+  - techdocs-core

@@ -7,6 +7,10 @@ import TeamSwitcher from "@/components/team-switcher"
 import { MainNav } from "@/components/main-nav"
 import { Logo } from "@/components/logo"
 import { Search } from "@/components/search"
+import { UserNav } from "@/components/user-nav"
+
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
 
 export const metadata: Metadata = {
   title: "Forms",
@@ -40,7 +44,10 @@ interface SettingsLayoutProps {
   children: React.ReactNode
 }
 
-export default function SettingsLayout({ children }: SettingsLayoutProps) {
+export default async function SettingsLayout({ children }: SettingsLayoutProps) {
+
+  const session = await getServerSession(options);
+
   return (
     <>
       <div className="border-b">
@@ -48,8 +55,7 @@ export default function SettingsLayout({ children }: SettingsLayoutProps) {
             <Logo />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
-              <Search />
-              <TeamSwitcher />
+              <UserNav session={session}/>
             </div>
           </div>
         </div>

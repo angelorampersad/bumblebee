@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link"
-import { usePathname } from 'next/navigation'
+import { usePathname, useParams } from 'next/navigation'
 
 import { cn } from "@/lib/utils"
 
@@ -10,6 +10,7 @@ export function MainNav({
   ...props
 }: React.HTMLAttributes<HTMLElement>) {
   const pathname = usePathname();
+  const params = useParams<{ productId: string }>()
   const activeLink = "text-sm font-medium transition-colors hover:text-primary";
   const unactiveLink = "text-sm font-medium text-muted-foreground transition-colors hover:text-primary";
 
@@ -19,26 +20,20 @@ export function MainNav({
       {...props}
     >
       <Link
-        href="/"
+        href={`/products/${params.productId}`}
         className={pathname === '/' ? activeLink : unactiveLink}
       >
-        Overview
+        Dashboard
       </Link>
-      {/* <Link
-        href="/insights"
-        className={pathname === '/insights' ? activeLink : unactiveLink}
-      >
-        Insights
-      </Link> */}
       <Link
-        href="/integrations"
-        className={pathname === '/integrations' ? activeLink : unactiveLink}
+        href={`/products/${params.productId}/integrations`}
+        className={pathname === `${params.productId}/integrations` ? activeLink : unactiveLink}
       >
         Integrations
       </Link>
       <Link
-        href="/settings"
-        className={pathname === '/settings' ? activeLink : unactiveLink}
+        href={`/products/${params.productId}/settings`}
+        className={pathname === `${params.productId}/settings` ? activeLink : unactiveLink}
       >
         Settings
       </Link>
