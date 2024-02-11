@@ -8,13 +8,15 @@ resource "aws_s3_bucket" "state" {
 }
 
 resource "aws_s3_bucket_acl" "state" {
-  bucket = aws_s3_bucket.state.id
-  acl    = "private"
+  bucket     = aws_s3_bucket.state.id
+  acl        = "private"
+  depends_on = [aws_s3_bucket_ownership_controls.tfstate]
+
 }
 
 resource "aws_s3_bucket_ownership_controls" "tfstate" {
   bucket = aws_s3_bucket.state.id
   rule {
-    object_ownership = "BucketOwnerEnforced"
+    object_ownership = "ObjectWriter"
   }
 }
