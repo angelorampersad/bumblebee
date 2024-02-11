@@ -1,4 +1,4 @@
-# JET Analytics Platform Hub
+# Bumblebee
 
 ## Local Development
 1. First spin up a detached Postgres docker container:
