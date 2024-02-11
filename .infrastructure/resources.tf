@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "state" {
-  bucket = "tf-state"
+  bucket = "bumblebee-tf-state"
 
   tags = {
     Name        = "Terraform State"
